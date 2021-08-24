@@ -1,4 +1,4 @@
-from . import point_set
+from point_set import PointSet
 
 
 def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
