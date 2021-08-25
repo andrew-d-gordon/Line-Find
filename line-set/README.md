@@ -14,7 +14,7 @@ Here is an example of how to run the program using unit_tests/test_9_set_9 as in
 * -g: specifies whether or not the results should be plotted (1 for yes, 0 for no)
 * -b: specifies the bounds which the output graph should have (b x b dimensions)
 
-Contents of units_tests/test_9_set_9: 
+**Contents of units_tests/test_9_set_9:**
 
 `1 1`
 
@@ -34,9 +34,8 @@ Contents of units_tests/test_9_set_9:
 
 `3 9`
 
-Output graph and corresponding lines for test_9_set_9:
+**Output graph and corresponding lines for test_9_set_9:**
 ![alt_text](https://github.com/andrew-d-gordon/coding-challenges/blob/main/line-set/src/unit_tests/unit_tests_output/unique_set_test_9_set_9_graph.png?raw=true)
-
  * -1.0x + 1.0y = 0.0
 
  * 1.0x + 0.0y = 1.0
