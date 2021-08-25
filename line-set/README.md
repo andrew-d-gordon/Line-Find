@@ -6,7 +6,7 @@ many points a line must cross through.
 
 Here is an example of how to run the program using unit_tests/test_9_set_9 as input. (As run from within src/)
 
-`python find_lines.py -t unit_tests/test_9_set_9 -p 3 -g 1 -b 10`
+`python find_lines.py -t unit_tests/test_9_set_9 -p 3 -g 1 -b 12`
 
 * -t: specifies the name of the test file to pull point data from
 * -p: specifies the point threshold to be reached
