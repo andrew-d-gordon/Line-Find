@@ -7,11 +7,34 @@ points. The line object serves to provide several pieces of information regardin
 a line id (reduced equation), a string representation of the line function, and individual a, b, and c values relating
 to a lines linear equation (these values are utilized in the id and string representations).
 
-
 # Functions
 
-**def gcd_abc(a, b, c):**
+`def gcd_abc(a, b, c)`
 * Usage:
     * Serves to find the gcd of three numeric values. If all a, b, and c equal 0, 1 is returned.
 
 * Return: The gcd of a, b, and c (or 1 if all equal 0)
+
+`def line_between_points(p1: tuple, p2: tuple)`
+* Usage:
+    * Serves to find the line between two points in 2d space. p1 and p2 must be of form (x, y). Returns resulting line
+    object. Additional handling occurs to ensure positive signing of b (the b in ax + by = c). Avoids duplicate *=-1
+    linear equation multiples when different orders of the same points are processed.
+
+* Return: A fully reduced, linear equation represented Line object 
+
+# Class and class functions
+
+**class Line**
+
+`def __init__(self, a, b, c)`
+* Usage
+    * Constructor of Line object initializes the object with a, b, and c numeric attributes as well as a line id and a 
+    line str attribute. The values a, b, and c which it is constructed with are divided by the gcd(a,b,c) to avoid 
+    creating a function that is a multiple of another. The lines are identified by linear equations: `ax + by = c`. The 
+    id attribute is a tuple `(a, b, c)` and the line_str attribute is a string of form `'ax + by = c'`.
+    
+`def print_line(self):`
+* Usage
+    * Print the line_str attribute of the Line object.
+    
