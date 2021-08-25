@@ -11,7 +11,7 @@ Here is an example of how to run the program using unit_tests/test_9_set_9 as in
 * -t: specifies the name of the test file to pull point data from
 * -p: specifies the point threshold to be reached
 * -g: specifies whether or not the results should be plotted (1 for yes, 0 for no)
-* -b: specifies the x,y bounds which the output graph should have
+* -b: specifies the bounds which the output graph should have (b x b dimensions)
 
 units_tests/test_9_set_9: 
 
