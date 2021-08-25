@@ -3,7 +3,9 @@ This project serves as a library of code for finding lines that cross through a 
 points. The driver code within find_lines.py utilizes the other modules within src/ in order to achieve it's 
 functionality. It is best to set several flags which specify an input file and the threshold of how many points a line 
 must cross through. More information on available functions, objects, and the line finding algorithm can be found in the 
-[docs](https://github.com/andrew-d-gordon/coding-challenges/tree/main/line-set/docs) folder.
+[docs](https://github.com/andrew-d-gordon/coding-challenges/tree/main/line-set/docs) folder. Line algorithm specifics 
+within finding_unique_lines algorithm section inside
+[find_lines.md](https://github.com/andrew-d-gordon/coding-challenges/tree/main/line-set/docs/find_lines.md).
 
 Here is an example of how to run the program using unit_tests/test_9_set_9 as input. (As run from within src/)
 
