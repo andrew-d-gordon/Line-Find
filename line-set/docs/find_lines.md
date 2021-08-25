@@ -27,8 +27,8 @@ solutions are available in finding_unique_lines function info below.
 * Usage:
     * Helper function to find_unique_lines. Serves to determine whether or not p1 and p2 should be processed in 
     find_unique_lines. If the line between p1 and p2 is unseen, seen but not satisfying of threshold, or if either p1 or
-    
     p2 are unseen, the pair is deemed necessary of processing.
+    
 * Return: Boolean representing the uniqueness/necessity of the two points within find_unique_lines main loop.
 
 `find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int)`
