@@ -76,6 +76,33 @@ def unique_points(p1: tuple, p2: tuple, points_used: dict, f_n_id: tuple, line_d
         return True
 
 
+def find_max_unique_point_lines(p_set: PointSet, num_points: int, point_thresh: int):
+    """
+    :param p_set: PointSet holding points to process for lines
+    :param num_points: number of points to be evaluated (p_set.size)
+    :param point_thresh: number of unique points the line must intersect to satisfy
+    :return: returns largest set of lines which intersect satisfiable number (point_thresh) of points (no shared points)
+    """
+
+    # Call upon find_unique_lines to find set of unique lines which intersect satisfiable number of points
+    p_lines, p_str_lines, full_line_dict = find_unique_lines(ps, ps.size, point_threshold)
+    max_line_set = []  # Should be set to largest set of lines in unique_p_dict
+
+    # Utilize recursive helper function to find the largest set of lines from pt_lines which have no points in common
+    # Can create sets as dict as follows: d = {point_dict: {(x1, y1): None, (x2, y2): None...}, l: [l1, ..., ln], ls:[]}
+    # def find_max_upt_help(idx: int, unique_p_dict: dict, line_set: list):
+    #   if idx > len(pt_lines):
+    #       d[ls].append(line_set)
+    #       return
+    #
+    #   find_max_upt_help(idx+1, unique_p_dict, line_set)
+    #   if d[l][idx] has unique points:
+    #       line_set = line_set[:].append(d[l][idx])  # Pass line set equal to version with new valid line appended
+    #       find_max_upt_help(idx+1, unique_p_dict, line_set)
+
+    return max_line_set, p_str_lines, full_line_dict  # update p_str_lines to only be lines from max_line_set
+
+
 def find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int):
     """
     :param p_set: PointSet holding points to process for lines
@@ -204,9 +231,10 @@ def supply_arguments(d_test: str = 'unit_tests/test_3_set_3', d_pt_thr: int = 3,
 
 
 if __name__ == '__main__':
-    # Retrieve test file name and other vars from CLI/defaults
+    # Retrieve test file name and other vars from CLI/defaults, set is_strict_unique boolean
     test_file, point_threshold, plot_graph, bounds = supply_arguments()
     set_points = []  # Supply own set of points here if desired. [(x1, y1), ..., (xn, yn)]
+    is_strict_unique = False  # Determines whether more selective line set algorithm desired
 
     # Unit test files be textual to be parsed (.read() specs)
     pts = retrieve_point_list(True, test_file, set_points)
@@ -215,7 +243,13 @@ if __name__ == '__main__':
     ps = PointSet(pts)
 
     # Find unique lines between three or more points within point set
-    pt_lines, pt_str_lines, all_line_dict = find_unique_lines(ps, ps.size, point_threshold)
+    # If largest set of lines with entirely unique points desired, call find_max_unique_point_lines()
+    pt_lines = pt_str_lines = []
+    all_line_dict = {}
+    if is_strict_unique:  # If max set of lines with no points from point set in common is desired
+        pt_lines, all_line_dict = find_max_unique_point_lines(ps, ps.size, point_threshold)
+    else:  # If set of unique lines from point set desired
+        pt_lines, pt_str_lines, all_line_dict = find_unique_lines(ps, ps.size, point_threshold)
     print("-------------------\nFinished processing.")
     print("Below are lines which crossed {0} or more points from the test data.".format(point_threshold))
     print("Linear equation form: " + str(pt_str_lines))
