@@ -35,7 +35,6 @@ Contents of units_tests/test_9_set_9:
 `3 9`
 
 Output graph and corresponding lines for test_9_set_9:
-
 ![alt_text](https://github.com/andrew-d-gordon/coding-challenges/blob/main/line-set/src/unit_tests/unit_tests_output/unique_set_test_9_set_9_graph.png?raw=true)
 
  * -1.0x + 1.0y = 0.0
