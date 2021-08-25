@@ -2,7 +2,7 @@
 
 **Overview**
 
-line.py contains the Line class as well as a module functions relating to line creation and solving for lines between 
+line.py contains the Line class as well as module functions relating to line creation and solving for lines between 
 points. The line object serves to provide several pieces of information regarding to a line in one object, these being:
 a line id (reduced equation), a string representation of the line function, and individual a, b, and c values relating
 to a lines linear equation (these values are utilized in the id and string representations).

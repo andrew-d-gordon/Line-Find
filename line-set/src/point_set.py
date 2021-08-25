@@ -10,4 +10,4 @@ class PointSet:
             self.points_d[p] = None
 
     def print_points(self):
-        print(self.points_d)
+        print(self.points)
