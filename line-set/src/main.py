@@ -1,5 +1,5 @@
 from point_set import *
-from line import Line
+from line import *
 import matplotlib.pyplot as plt
 
 
@@ -47,7 +47,7 @@ def unique_points(p_1: tuple, p_2: tuple, points_used: dict, f_n_id: tuple, line
         return True
 
 
-def find_unique_lines(p_set: PointSet, point_thresh: int):
+def find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int):
     """
     :param p_set: PointSet holding points to process for lines
     :param point_thresh: number of unique points the line must intersect to satisfy
@@ -60,49 +60,48 @@ def find_unique_lines(p_set: PointSet, point_thresh: int):
 
     # Build dict of all lines between unique pairs of points in p_set
     # While computing lines, if: line between new pair == previously found line (and threshold met), add line to output
-    for i in range(p_set.size):
-        p_1 = p_set.points[i]
-        # Look at lines w/points at idx i (p_1) and at idx j=i+1->p_set.size (p_2)
-        for j in range(i+1, p_set.size):
-            p_2 = p_set.points[j]
-            f_n = line_between_points(p_1, p_2)
+    for i in range(num_points):
+        p1 = p_set.points[i]
+        # Look at lines between points at idx i (p1) and at idx j=i+1->num_points (p2)
+        for j in range(i+1, num_points):
+            p2 = p_set.points[j]
+            f_n = line_between_points(p1, p2)
 
-            if not unique_points(p_1, p_2, points_used, f_n.id, line_dict, point_thresh):
+            if not unique_points(p1, p2, points_used, f_n.id, line_dict, point_thresh):
                 continue
 
             # If line exists in dict, append new point to it's val, if len(v)==point_thresh, add line to output
             try:
                 pts_crossed = line_dict[f_n.id]
-                pts_crossed.append(p_2)
+                pts_crossed.append(p2)
                 if len(pts_crossed) == point_thresh:
                     lines_output.append(f_n.id)
                     lines_output_str.append(f_n.line_str)
                     #print("New valid line:", f_n.id, pts_crossed)
             except KeyError:
                 # If line not in dict yet, add it,
-                line_dict[f_n.id] = [p_1, p_2]
+                line_dict[f_n.id] = [p1, p2]
 
             # Set use of points to True (used)
-            points_used[p_1] = True
-            points_used[p_2] = True
+            points_used[p1] = True
+            points_used[p2] = True
 
     # Iterate through all lines
-    # print(line_dict)
-    print(lines_output)
     return lines_output, lines_output_str
 
 
 if __name__ == '__main__':
-    # Unit test files must be labeled for text content to be parsed
+    # Unit test files be textual to be parsed (.read() specs)
     unit_test_file = 'unit_tests/test_100_random_100'
     pts = retrieve_point_list(True, unit_test_file, [])
 
-    # Create PointSet object from parsed points list
+    # Create PointSet object from derived pts list
     ps = PointSet(pts)
 
     # Find unique lines between three or more points within point set
     point_threshold = 3
-    three_pt_lines, three_pt_lines_str = find_unique_lines(ps, point_threshold)
+    three_pt_lines, three_pt_lines_str = find_unique_lines(ps, ps.size, point_threshold)
+    print(three_pt_lines, three_pt_lines_str)
 
     # Graph lines
     plot_lines(three_pt_lines)
