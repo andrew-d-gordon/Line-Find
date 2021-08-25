@@ -1,8 +1,9 @@
 # Find Lines Through Points
 This project serves as a library of code for the purpose of finding lines that cross through a number of unique points 
 from a set of points. The driver code within find_lines.py utilizes the other modules within src/ in order to achieve 
-it's functionality. It is run with several flags which can be utilized to specify an input file and the threshold of how
-many points a line must cross through.
+it's functionality. It is best to set several flags which specify an input file and the threshold of how many points a 
+line must cross through. More information on available functions, objects, and line finding algorithms can be found in 
+the docs folder.
 
 Here is an example of how to run the program using unit_tests/test_9_set_9 as input. (As run from within src/)
 
