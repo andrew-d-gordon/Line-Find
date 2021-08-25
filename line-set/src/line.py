@@ -16,6 +16,11 @@ def gcd_abc(a, b, c):
 
 def line_between_points(p1: tuple, p2: tuple):
     """
+    This will generate a function representing line between p1 and p2.
+    The line represented by a linear equation will always have positively signed b values and a,b,c / gcd(a,b,c).
+    The above functionality avoids creating equations that are multiples of others (by negative or positive factors).
+    Lines linear equation represented by ax1 + by1 = c where a = (y2-y1) and b = (x2-x1)
+
     :param p1: first point (x1, y1)
     :param p2: second point (x2, y2)
     :return: line object representing f(n) line which spans p1->p2
@@ -24,7 +29,11 @@ def line_between_points(p1: tuple, p2: tuple):
     a = p2[1]-p1[1]
     b = p1[0]-p2[0]
     c = a*p1[0] + b*p1[1]
-    f_n = Line(a, b, c)
+
+    signing = 1
+    if b < 0:
+        signing = -1
+    f_n = Line(a*signing, b*signing, c*signing)
 
     return f_n
 
@@ -38,7 +47,7 @@ class Line:
         self.c = c/gcd_vars
         self.id = tuple([self.a, self.b, self.c])
 
-        # Lines follow equation by ax1 + by1 = c where a = (y2-y1) and b = (x2-x1)
+        # Lines linear equation represented by ax1 + by1 = c where a = (y2-y1) and b = (x2-x1)
         self.line_format = '{0}x + {1}y = {2}'
         self.line_str = self.line_format.format(self.a, self.b, self.c)
 
