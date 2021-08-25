@@ -10,13 +10,13 @@ to a lines linear equation (these values are utilized in the id and string repre
 # Functions
 
 `def gcd_abc(a, b, c)`
-* Usage:
+* Usage
     * Serves to find the gcd of three numeric values. If all a, b, and c equal 0, 1 is returned.
 
 * Return: The gcd of a, b, and c (or 1 if all equal 0)
 
 `def line_between_points(p1: tuple, p2: tuple)`
-* Usage:
+* Usage
     * Serves to find the line between two points in 2d space. p1 and p2 must be of form (x, y). Returns resulting line
     object. Additional handling occurs to ensure positive signing of b (the b in ax + by = c). Avoids duplicate *=-1
     linear equation multiples when different orders of the same points are processed.
