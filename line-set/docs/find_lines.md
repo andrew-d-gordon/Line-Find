@@ -11,19 +11,19 @@ solutions are available in finding_unique_lines function info below.
 
 # Functions
 
-**plot_points(line: tuple, line_dict: dict, graph: plt):**
+`plot_points(line: tuple, line_dict: dict, graph: plt)`
 * Usage:
     * Serves to plot points on a graph for a specific line.
 
 * Return: N/A
 
-**plot_lines(lines: list, l_d: dict, x_bnd: int, y_bnd: int, g_name: str, p_plt: bool):**
+`plot_lines(lines: list, l_d: dict, x_bnd: int, y_bnd: int, g_name: str, p_plt: bool)`
 * Usage:
     * Serves to plot lines (and points if p_plt is True) on a graph with the specified bounds.
 
 * Return: N/A
 
-**unique_points(p1: tuple, p2: tuple, points_used: dict, f_n_id: tuple, line_d: dict, point_thresh: int):**
+`unique_points(p1: tuple, p2: tuple, points_used: dict, f_n_id: tuple, line_d: dict, point_thresh: int)`
 * Usage:
     * Helper function to find_unique_lines. Serves to determine whether or not p1 and p2 should be processed in 
     find_unique_lines. If the line between p1 and p2 is unseen, seen but not satisfying of threshold, or if either p1 or
@@ -31,7 +31,7 @@ solutions are available in finding_unique_lines function info below.
     p2 are unseen, the pair is deemed necessary of processing.
 * Return: Boolean representing the uniqueness/necessity of the two points within find_unique_lines main loop.
 
-**find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int):**
+`find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int)`
 * Usage:
     * Serves to return the set of lines which pass through point_thresh number of 'unique' points within a set of points 
     represented in p_set. 'unique' in the sense that the set of points which a given, eligible line passes through is
@@ -82,7 +82,7 @@ solutions are available in finding_unique_lines function info below.
 
 * Return: Satisfying set of lines as their linear equation strings `['ax + by + c',...]`, and tuples `[(a, b, c),...]`.
 
-**retrieve_point_list(is_file: bool, input_name: str, points: list):**
+`retrieve_point_list(is_file: bool, input_name: str, points: list)`
 * Usage:
     * Can parse points from a test file following format in src/unit_tests. If is_file is True and the file at path 
     input_name can be opened for reading, parsing ensues. The desired structure to parse points from is as follows: 
@@ -94,7 +94,7 @@ solutions are available in finding_unique_lines function info below.
 * Returns: A list of points with the form: `[(x1, y1), ..., (xn, yn)]`. Errors if desired file cannot be opened. 
 Returns points if is_file is False.
 
-**supply_arguments(d_test: str = 'input_file_path', d_pt_thr: int = 3, d_plt_g: bool = False, d_b: int = 20):**
+`supply_arguments(d_test: str = 'input_file_path', d_pt_thr: int = 3, d_plt_g: bool = False, d_b: int = 20)`
 * Usage: 
     * Utilized to parse command line arguments specified by the flags -t, -p, -g, -b.
         * -t: path to input file
@@ -106,7 +106,7 @@ Returns points if is_file is False.
         
 * Return: Desired arguments needed to run driver code in main.py.
 
-**main**
+`main`
 * Usage:
     * Driver code to retrieve args from supply_arguments, request point list from input file, create PointSet for said 
     points, runs them through find_unique_lines, prints results and if specified graph results.
