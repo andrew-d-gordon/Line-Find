@@ -74,7 +74,7 @@ solutions are available in finding_unique_lines function info below.
         function which incrementally builds a candidate set of lines while iterating through each line in the list of 
         lines returned by finding_unique_lines. At each run, if the currently viewed line utilizes points so far unused
         in the set, a recursive call is made with that line added to the set, and a recursive call is made without that
-        line added to the set. This find a set representing each permutation of non conflicting lines (each crossing 
+        line added to the set. This will find sets representing each permutation of non conflicting lines (each crossing 
         through entirely unique points in the pt set) as well as allow you to choose the largest set of non conflicting 
         lines. O(2^n) as 2^n subsets are technically possible but many recursive calls should be avoided by only making 
         the recursive call with the new line added to the set when it has only unseen points to the set thus far.
