@@ -7,7 +7,9 @@ cross through a certain threshold of unique points in the set. Lines are returne
 equation from which resembles: `ax + by = c`. The reduced form is a tuple resembling: `(a, b, c)`. The lines returned 
 from find_unique_lines guarantees each line crosses through at least point_threshold number of points and the set of
 points that it crosses through is unique. Discussion and information regarding the line finding algorithm and alternate 
-solutions are available in finding_unique_lines function info below.
+solutions are available in finding_unique_lines function info below. Lastly, find_lines primary code is only suitable 
+for integer x, y coordinates based on parameter typing. While many functions likely can work with float values, such 
+guarantees cannot be made.
 
 # Functions
 

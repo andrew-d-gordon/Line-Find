@@ -11,7 +11,7 @@ def random_point_dict(num_p: int, x_bound: int, y_bound: int, d: dict):
     """
     x_candidate = random.randint(0 - x_bound, x_bound)
     y_candidate = random.randint(0 - y_bound, y_bound)
-    print("Total points:", num_p)
+    print("Total points generated:", num_p)
     for i in range(num_p):
         new_point = False
         while not new_point:
@@ -30,8 +30,9 @@ def write_points_to_file(file_name: str, d: dict):
     :param d: random point dict
     :return: None, serves to write points in d to file
     """
+    save_dir = 'unit_tests/'
 
-    file = open('unit_tests/'+file_name, 'w+')
+    file = open(save_dir+file_name, 'w+')
     for k in d.keys():
         file.write(str(k[0])+' '+str(k[1])+'\n')
 

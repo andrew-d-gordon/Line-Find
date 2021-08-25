@@ -17,4 +17,3 @@ input list of points in the form: `[(x1, y1), ..., (xn, yn)]`.
 `def print_points(self)`
 * Usage
     * Print the points list attribute of the PointSet object.
-    
