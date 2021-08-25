@@ -1,4 +1,3 @@
-import os
 import random
 
 
@@ -29,7 +28,7 @@ def write_points_to_file(file_name: str, d: dict):
     """
     :param file_name: name of file to write points to
     :param d: random point dict
-    :return: None, serves to write points in d to file.
+    :return: None, serves to write points in d to file
     """
 
     file = open('unit_tests/'+file_name, 'w+')
