@@ -4,7 +4,7 @@ from a set of points. The driver code within find_lines.py utilizes the other mo
 it's functionality. It is run with several flags which can be utilized to specify an input file and the threshold of how
 many points a line must cross through.
 
-Here is an example of how to run the program using unit_tests/test_3_set_3 as input. (As run from within src/)
+Here is an example of how to run the program using unit_tests/test_9_set_9 as input. (As run from within src/)
 
 `python find_lines.py -t unit_tests/test_3_set_3 -p 3 -g 1 -b 10`
 
@@ -13,7 +13,7 @@ Here is an example of how to run the program using unit_tests/test_3_set_3 as in
 * -g: specifies whether or not the results should be plotted (1 for yes, 0 for no)
 * -b: specifies the x,y bounds which the output graph should have
 
-units_tests/test_3_set_3: 
+units_tests/test_9_set_9: 
 
 `1 1`
 
@@ -21,5 +21,18 @@ units_tests/test_3_set_3:
 
 `3 3`
 
-![test_3_set_3 unique point set lines result](unit_tests/unit_tests_output/unique_set_test_3_set_3_graph.png)
+`1 4`
+
+`2 5`
+
+`3 6`
+
+`1 7`
+
+`2 8`
+
+`3 9`
+
+
+![alt_text](https://github.com/andrew-d-gordon/coding-challenges/blob/main/line-set/src/unit_tests/unit_tests_output/unique_set_test_9_set_9_graph.png?raw=true)
 
