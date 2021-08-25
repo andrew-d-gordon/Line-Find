@@ -35,8 +35,8 @@ solutions are available in finding_unique_lines function info below.
 * Usage:
     * Serves to return the set of lines which pass through point_thresh number of 'unique' points within a set of points 
     represented in p_set. 'unique' in the sense that the set of points which a given, eligible line passes through is
-    
     unique. E.g. the point (1,1) could be utilized in lines passing through (1,1), (2,2), (3,3) and (1,1), (1,2), (1,3).
+    More on this and another interpretation in the below 'Unique' section.
 
 * Line finding algorithm design and runtime:
     * Overview
