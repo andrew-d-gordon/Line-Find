@@ -1,6 +1,14 @@
 from math import gcd
 
 
+def convert_lines_to_str(lines: list):
+    """
+    :param lines: set of lines to convert to str, lines must have form (a, b, c) (reference Line.id)
+    :return: list of lines formatted as strings: 'ax + by = c'
+    """
+    return [linear_eq_str(line[0], line[1], line[2]) for line in lines]
+
+
 def gcd_abc(a, b, c):
     """
     :param a: number representing a in ax + by = c
@@ -38,6 +46,19 @@ def line_between_points(p1: tuple, p2: tuple):
     return f_n
 
 
+def linear_eq_str(a, b, c):
+    """
+       :param a: number representing a in ax + by = c
+       :param b: number representing b in ax + by = c
+       :param c: number representing c in ax + by = c
+       :return: string version of linear equation of form: 'ax + by = c'
+   """
+
+    # Set line desired line str format str, return str formatted with a, b, and c
+    line_format = '{0}x + {1}y = {2}'
+    return line_format.format(a, b, c)
+
+
 class Line:
 
     def __init__(self, a, b, c):
@@ -48,8 +69,7 @@ class Line:
         self.id = tuple([self.a, self.b, self.c])
 
         # Lines linear equation represented by ax1 + by1 = c where a = (y2-y1) and b = (x2-x1)
-        self.line_format = '{0}x + {1}y = {2}'
-        self.line_str = self.line_format.format(self.a, self.b, self.c)
+        self.line_str = linear_eq_str(self.a, self.b, self.c)
 
     def print_line(self):
         print(self.line_str)

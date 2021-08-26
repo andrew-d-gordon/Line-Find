@@ -11,7 +11,7 @@ generated tests will attempt to be saved within the unit_tests directory.
 
 `def random_point_dict(num_p: int, x_bound: int, y_bound: int, d: dict)`
 * Usage
-    * Serves to create a dictionary containing nump_p amount of random points. These points x and y values are to be
+    * Serves to create a dictionary containing num_p amount of random points. These points x and y values are to be
      bounded within the positive and negative range granted by the x and y bound parameters. The dictionary is filled
      with unique random x, y pairs within the bounded space. The reliance on random generation in the bounded space
      leads to varying run times.
