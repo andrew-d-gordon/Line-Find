@@ -209,7 +209,13 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
         for p_raw in content:
             p_split = p_raw[:-1].split(' ')  # [:-1) splice removes \n
             if p_split[0] is not None and p_split[1] is not None:
-                points.append(tuple([int(p_split[0]), int(p_split[1])]))
+                try:
+                    points.append(tuple([int(p_split[0]), int(p_split[1])]))
+                except ValueError:
+                    # Error when data is supplied that cannot be cast to a valid integer
+                    print("Error occurred when processing test file. Values supplied must be natural numbers.")
+                    print("Here is an example of viable input data for a test file: '1 2\\n3 4\\n5 6\\n'")
+                    sys.exit(1)
 
     return points
 
