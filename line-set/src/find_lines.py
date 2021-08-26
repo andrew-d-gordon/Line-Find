@@ -212,10 +212,8 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
                 try:
                     points.append(tuple([int(p_split[0]), int(p_split[1])]))
                 except ValueError:
-                    # Error when data is supplied that cannot be cast to a valid integer
-                    print("Error occurred when processing test file. Values supplied must be natural numbers.")
-                    print("Here is an example of viable input data for a test file: '1 2\\n3 4\\n5 6\\n'")
-                    sys.exit(1)
+                    # Error when data is supplied that cannot be cast to a valid integer. Potentially type tolerant.
+                    raise ValueError('Error during processing test file data. Values supplied must be natural numbers.')
 
     return points
 
