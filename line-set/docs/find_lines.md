@@ -138,11 +138,12 @@ guarantees cannot be made.
 * Returns: A list of points with the form: `[(x1, y1), ..., (xn, yn)]`. Errors if desired file cannot be opened. 
 Returns points if is_file is False.
 
-`supply_arguments(d_test: str = 'input_file_path', d_pt_thr: int = 3, d_plt_g: bool = False, d_b: int = 20)`
+`def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_plt: bool = False, d_b: int = 20, d_strict: bool = False)`
 * Usage
     * Utilized to parse command line arguments specified by the flags -t, -p, -g, -b.
         * -t: path to input file
         * -p: point threshold to meet (in find_unique_lines)
+        * -s: want largest number of lines which do not have any points in common to be returned (1 for yes, 0 for no)
         * -g: 1 or 0 respectively signifying to graph or not to graph results
         * -b: bounds for graph to abide by (b x b dimensions)
         

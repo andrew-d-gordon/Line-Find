@@ -214,61 +214,72 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
     return points
 
 
-def supply_arguments(d_test: str = 'unit_tests/test_3_set_3', d_pt_thr: int = 3, d_plt_g: bool = False, d_b: int = 20):
+# Default test file for supply_arguments test file default, not utilized if '-t input_name' supplied in CL run
+d_f = 'unit_tests/test_3_set_3'
+
+
+def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_plt: bool = False, d_b: int = 20, d_strict: bool = False):
     """
     supply_arguments is able to provide a file name, point threshold, and graphing flags for main.
     It does so by attempting to parse the CLI arguments by these flags:
     -t: test file name
-    -p: point threshold (1 for graph desired, 0 for graph not desired)
-    -g: plot graph of results boolean
+    -p: point threshold
+    -s: want largest number of lines which do not have any points in common to be returned (1 for yes, 0 for no)
+    -g: plot graph of results boolean (1 for yes, 0 for no)
     -b: bounds for said graph
 
     Example CLI run of this program:
-    'python find_lines.py -t unit_tests/test_3_set_3 -p 3 -g 1 -b 100'
+    'python find_lines.py -t unit_tests/test_3_set_3 -p 3 -s 1 -g 1 -b 100'
+
 
     :param d_test: default test file to utilize if none supplied
     :param d_pt_thr: default point threshold if none supplied
-    :param d_plt_g: default boolean decision for plotting graph when none supplied
+    :param d_plt: default boolean decision for plotting graph when none supplied
     :param d_b: default bounds for graph to plot on
+    :param d_strict: default boolean decision for running stricter line finding fn (similar to is_strict_unique in main)
     :return: returns necessary arguments to find test file, process test data, and optional graph flags to be set
     """
 
-    file_name = pt_thresh = plt_graph = graph_bounds = None
+    file_name = pt_thresh = is_strict_fn = plt_graph = graph_bounds = None
 
     argv = sys.argv[1:]
+    flags = "t:p:s:g:b:"
     try:
-        opts, args = getopt.getopt(argv, "t:p:g:b:")
+        opts, args = getopt.getopt(argv, flags)
         for opt, arg in opts:
             if opt == '-t':
                 file_name = str(arg)
             elif opt == '-p':
                 pt_thresh = int(arg)
+            elif opt == '-s':
+                is_strict_fn = bool(int(arg))
             elif opt == '-g':
-                plt_graph = bool(arg)
+                plt_graph = bool(int(arg))
             elif opt == '-b':
                 graph_bounds = int(arg)
     except getopt.GetoptError:
         print('Error in processing command line arguments.')
-        print("Example use: python find_lines.py -t unit_tests/test_3_set_3 -p 3 -g 1 -b 10")
+        print("Example use: python find_lines.py -t unit_tests/test_3_set_3 -p 3 -s 1 -g 1 -b 10")
         sys.exit(1)
 
     if file_name is None:
         file_name = d_test
     if pt_thresh is None:
         pt_thresh = d_pt_thr
+    if is_strict_fn is None:
+        is_strict_fn = d_strict
     if plt_graph is None:
-        plt_graph = d_plt_g
+        plt_graph = d_plt
     if graph_bounds is None:
         graph_bounds = d_b
 
-    return file_name, pt_thresh, plt_graph, graph_bounds
+    return file_name, pt_thresh, is_strict_fn, plt_graph, graph_bounds
 
 
 if __name__ == '__main__':
     # Retrieve test file name and other vars from CLI/defaults, set is_strict_unique boolean
-    test_file, point_threshold, plot_graph, bounds = supply_arguments()
+    test_file, point_threshold, is_strict_unique, plot_graph, bounds = supply_arguments()
     set_points = []  # Supply own set of points here if desired. [(x1, y1), ..., (xn, yn)]
-    is_strict_unique = True  # Determines whether more selective line set algorithm desired
 
     # Unit test files be textual to be parsed (.read() specs)
     pts = retrieve_point_list(True, test_file, set_points)

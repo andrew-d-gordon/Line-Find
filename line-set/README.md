@@ -9,11 +9,16 @@ within finding_unique_lines algorithm section inside
 
 Here is an example of how to run the program using unit_tests/test_9_set_9 as input. (As run from within src/)
 
-`python find_lines.py -t unit_tests/test_9_set_9 -p 3 -g 1 -b 12`
+`python find_lines.py -t unit_tests/test_9_set_9 -p 3 -s 1 -g 1 -b 12`
 
 * -t: specifies the name of the test file to pull point data from
 * -p: specifies the point threshold to be reached
-* -g: specifies whether or not the results should be plotted (1 for yes, 0 for no)
+* -s: specifies restrictions on the set of lines returned
+    * `-s 0` for set of unique lines that satisfy point threshold (these lines can have points in common)
+    * `-s 1` for the largest number of lines which do not have any points in common. It is a subset of the set of unique
+     lines found that satisfy the given point threshold (as specified by -p)
+    * Outputs using both `-s 0` and `-s 1` are shown below on test_9_set_9 (`-s 0` runs significantly faster)
+* -g: specifies whether or not the results should be plotted (`-p 1` for graph desired, `-p 0` for no graph desired)
 * -b: specifies the bounds which the output graph should have (b x b dimensions)
 
 **Contents of units_tests/test_9_set_9:**
@@ -59,8 +64,8 @@ Here is an example of how to run the program using unit_tests/test_9_set_9 as in
  
   </div>
   
- **This is the stricter 'unique' definition graph and corresponding lines for test_9_set_9 (stricter option most viable 
- on smaller input sets/high point thresholds).**
+ **This is the stricter (-s flag) 'unique' output graph and corresponding lines for test_9_set_9 (-s option most viable 
+ on smaller input sets/inputs looking for high point thresholds).**
  <div align="center">
  
 ![alt_text](https://github.com/andrew-d-gordon/coding-challenges/blob/main/line-set/src/unit_tests/unit_tests_output/strict_unique_set_test_9_set_9_graph.png?raw=true)
