@@ -138,7 +138,7 @@ guarantees cannot be made.
 * Returns: A list of points with the form: `[(x1, y1), ..., (xn, yn)]`. Errors if desired file cannot be opened. 
 Returns points if is_file is False.
 
-`def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_plt: bool = False, d_b: int = 20, d_strict: bool = False)`
+`def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = False, d_plt: bool = False, d_b: int = 20)`
 * Usage
     * Utilized to parse command line arguments specified by the flags -t, -p, -g, -b.
         * -t: path to input file

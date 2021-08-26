@@ -218,7 +218,7 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
 d_f = 'unit_tests/test_3_set_3'
 
 
-def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_plt: bool = False, d_b: int = 20, d_strict: bool = False):
+def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = False, d_plt: bool = False, d_b: int = 20):
     """
     supply_arguments is able to provide a file name, point threshold, and graphing flags for main.
     It does so by attempting to parse the CLI arguments by these flags:
