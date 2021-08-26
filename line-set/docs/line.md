@@ -9,6 +9,12 @@ to a lines linear equation (these values are utilized in the id and string repre
 
 # Functions
 
+`def convert_lines_to_str(lines: list)`
+* Usage
+    * Serves to build a list of linear equation strings from a list of lines that have each line as tuple (a, b, c).
+
+* Return: a list of linear equations converted to a readable format
+
 `def gcd_abc(a, b, c)`
 * Usage
     * Serves to find the gcd of three numeric values. If all a, b, and c equal 0, 1 is returned.
@@ -22,6 +28,12 @@ to a lines linear equation (these values are utilized in the id and string repre
     linear equation multiples when different orders of the same points are processed.
 
 * Return: A fully reduced, linear equation represented Line object 
+
+`def linear_eq_str(a, b, c)`
+* Usage
+    * Serves to build a linear equation string from the three variables necessary for a line's linear equation.
+
+* Return: a string version of a line's linear equation
 
 # Class and class functions
 

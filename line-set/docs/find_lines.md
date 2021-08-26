@@ -33,6 +33,48 @@ guarantees cannot be made.
     
 * Return: Boolean representing the uniqueness/necessity of the two points within find_unique_lines main loop.
 
+`def find_max_upt_helper(l_idx: int, l_amt: int, all_lines: list, line_set: list, uni_p_dict: dict, uni_line_sets: dict)`
+* Usage
+    * Helper function to find_max_unique_point_lines() discussed below. Serves to carry out a recursive backtracking 
+    algorithm to find the every subset of lines passed in by all_lines that have no points in common.
+
+* Runtime and algorithm
+    * The implemented algorithm is effectively a backtracking, subset finding, recursive algorithm which at the
+    high end will run in O(2^n) where n is the amount of lines in the input set. Some extra computation is accrued from 
+    ensuring the current set of lines do not share any points in common but this computation is dwarfed in comparison 
+    to the O(2^n). Basically, at each call of the func, if not at the end, a recursive call will be made without adding
+    the current line at `all_lines[l_idx]` to the set being built (line_set), and if the line is valid, then we will
+    make a recursive call having added the current line to the set. This will go through every possible subset of valid
+    lines available in the set all_lines.
+    
+* Possible improvements
+    * The O(2^n) runtime is not ideal to say the least. While some time is saved in not making the second 'line added to
+    the set' call when the current line does not satisfy as unique, things still get out of control quite quickly for 
+    any significant input (e.g. test_1000_set_100 in unit_tests/, 1000 points in range x,y -100, 100). I am positive 
+    that applying a dynamic programming approach wherein reuse of computation helps avoid unnecessary traversals within
+    the recursive tree is necessary to improve. Some comfort could be provided in that we are looking for the largest 
+    set of lines that do not share any points, however I am unsure in how to implement reuse effectively. We are looking
+    for the largest subset of lines that do not any common points. A possible reuse method could be in setting a 
+    'largest set found' for any given index within all_lines and only revisiting a subtree if the current set being
+    built is larger than the max. One glaring reason this may not work is that the point in finding each possible 
+    subset is because skipping lines which take up lots of space on the graph may be crucial to finding the truly largest 
+    set of lines; if we stop at a certain index because the set we are currently building is not as large as the previous
+    largest, then we risk missing the construction of a set which can fit more lines in the subtree that gets blocked off.
+    I will continue to think of additional improvements/viable methods of backtracking, but for now, I hope these two 
+    unique line set finding are generally viable solutions.
+    
+* Return: None, serves to return a filled out dictionary containing each valid subset of lines found from all_lines.
+
+`def find_max_unique_point_lines(p_set: PointSet, num_points: int, point_thresh: int)`
+* Usage
+    * A stricter version of the below find_unique_lines function. It serves to utilize the output of find_unique_lines
+    (that being a set of unique lines passing through at least a certain number of points) in order to find the largest
+    set of lines which do not have any crossed points in common. It utilizes a helper recursive function to do the brunt
+    of the line set finding process. The return follows the stricter definition of 'Unique' discussed in func below. 
+    More details on algorithm specifics can be found in the runtime and algorithm section for the helper function above.
+    
+* Return: Largest set of lines which do not share crossed points, dict of each line found during find_unique_lines
+
 `find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int)`
 * Usage
     * Serves to return the set of lines which pass through point_thresh number of 'unique' points within a set of points 

@@ -91,7 +91,7 @@ def find_max_upt_helper(l_idx: int, l_amt: int, all_lines: list, line_set: list,
     if l_idx >= l_amt:
         lines_in_set = len(line_set)
         uni_line_sets[lines_in_set] = line_set  # Storing line_set in dict with key = size of line_set
-        return lines_in_set
+        return
 
     # If there are still lines to consider, make a recursive call without considering the current line
     find_max_upt_helper(l_idx+1, l_amt, all_lines, line_set[:], uni_p_dict.copy(), uni_line_sets)
