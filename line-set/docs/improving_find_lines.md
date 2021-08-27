@@ -8,9 +8,9 @@ find_max_unique_point_lines O(2^n) does on the larger unit test files available 
 potential algorithm.
 
 # Finding the fewest amount of lines we can remove, such that each remaining line has no points in common with the others
-Take the set of all unique lines all_lines, where each line in all_lines has reference to every point it crosses.
-Now consider that each line in all_lines is a vertex in a graph, and an edge represents a shared point with another line.
-To find the largest set of lines that do not share any points in all_lines, we want to:
+Take the set of all unique lines `all_lines`, where each line in `all_lines` has reference to every point it crossed.
+Now consider that each line in `all_lines` is a vertex in a graph, and an edge represents a shared point with another line.
+To find the largest set of lines from `all_lines` that do not share any points, we want to:
 Remove the fewest vertices in the graph, such that every remaining vertex is isolated.
 
 After creating the adjacency matrix in `O(n+m)`, we want to build sets of every disconnected set of vertices in the graph.
