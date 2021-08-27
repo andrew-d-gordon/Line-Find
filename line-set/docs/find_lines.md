@@ -7,9 +7,8 @@ cross through a certain threshold of unique points in the set. Lines are returne
 equation from which resembles: `ax + by = c`. The reduced form is a tuple resembling: `(a, b, c)`. The lines returned 
 from find_unique_lines guarantees each line crosses through at least point_threshold number of points and the set of
 points that it crosses through is unique. Discussion and information regarding the line finding algorithm and alternate 
-solutions are available in finding_unique_lines function info below. Lastly, find_lines primary code is only suitable 
-for integer x, y coordinates based on parameter typing. While many functions likely can work with float values, such 
-guarantees cannot be made.
+solutions are available in finding_unique_lines function info below. Lastly, find_lines data retrieval and functionality
+can work with both integer or float coordinates (valid numerical data is cast to floats if retrieving input from file).
 
 # Functions
 
@@ -132,7 +131,7 @@ guarantees cannot be made.
     input_name can be opened for reading, parsing ensues. The desired structure to parse points from is as follows: 
         * `x1 y1\nx2 y2\nx3 y3\n`
         
-    * All x and y in the input file must be numeric as they are cast to integers upon creation of the point list.
+    * All x and y in the input file must be numeric as they are cast to floats upon creation of the point list.
     Each point is stored into the point list as a tuple (x, y).
     
 * Returns: A list of points with the form: `[(x1, y1), ..., (xn, yn)]`. Errors if desired file cannot be opened. 
