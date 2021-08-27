@@ -53,9 +53,9 @@ Step 1 Total: `O(n)`
 
 **Step 2**
 
-For every vertex removed, 
-	- we perform an `O(m)` operation where we remove the m edges that the vertex had
-	- we perform an `O(n*logn)` heap sort after each removal of the top vertex where n is number of vertices in graph
+For every vertex removed, we perform:
+* an `O(m)` operation where we remove the m edges that the vertex had (also decrementing edge count for adjacent vertices)
+* an `O(n*logn)` heap sort where n is number of vertices remaining in the graph
 
 Because step 2 will be repeated until there are no more edges in the graph, this process at maximum should repeat a 
 maximum of n-1 times where n is number of vertices in an island.
@@ -75,7 +75,7 @@ Total: O(n)
 The `O(n+m)` is the overhead of creating the graph and finding the various islands (DFS for disconnected sets).
 Also, `O(n*m)` could certainly provide considerable computation time, but I feel compared to `O(n*nlogn)`, especially 
 when the input is guaranteed to not be a fully connected graph (each line cannot not share all of it's points with 
-another), `O(n*nlogn)` is more likely a better estimate of the computation time on large scales.
+another), `O(n*nlogn)` is more likely a better estimate of the computation time.
 
 While this algorithm may not be completely optimal, should it work in practice, it would certainly be superior to the 
 current O(2^n), find_max_unique_point_lines implementation.
