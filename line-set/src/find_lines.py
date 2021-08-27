@@ -78,6 +78,8 @@ def unique_points(p1: tuple, p2: tuple, points_used: dict, f_n_id: tuple, line_d
 
 def find_max_upt_helper(l_idx: int, l_amt: int, all_lines: list, line_set: list, uni_p_dict: dict, uni_line_sets: dict):
     """
+    Details on this algorithm can be found within docs/find_lines.md in the find_max_upt_helper section.
+
     :param l_idx: current index to get line from: unique_lines[l_idx] being considered
     :param l_amt: the amount of lines in uni_lines (base case length to know full depth of recursion tree reached)
     :param all_lines: set of unique lines and their points to iterate through and build sets from [(ln, pts_crossed)...]
@@ -283,7 +285,7 @@ def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = Fals
 if __name__ == '__main__':
     # Retrieve test file name and other vars from CLI/defaults, set is_strict_unique boolean
     test_file, point_threshold, is_strict_unique, plot_graph, bounds = supply_arguments()
-    set_points = []  # Supply own set of points here if desired. [(x1, y1), ..., (xn, yn)]
+    set_points = []  # Supply own set of points here if desired. Form: [(x1, y1), ..., (xn, yn)]
 
     # Unit test files be textual to be parsed (.read() specs)
     pts = retrieve_point_list(True, test_file, set_points)
