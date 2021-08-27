@@ -36,9 +36,9 @@ Add the remaining vertices (which have no edges, and represented by line eqs) to
 After doing this for every island in the graph, you are left with the largest possible set of lines which have no points
 in common.
 
-If the above description was not clear, here is an, admittedly MS Paint berthed, run of the program on test_9_set_9. 
+If the above description was not clear, here is a (admittedly MS Paint berthed) run of the algorithm on test_9_set_9. 
 
-![alt_text]()
+![alt_text](https://github.com/andrew-d-gordon/coding-challenges/blob/main/line-set/docs/improving_find_lines_algorithm_visualizer.png?raw=true)
 
 # Rough runtime analysis
 
