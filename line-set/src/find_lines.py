@@ -210,10 +210,10 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
             p_split = p_raw[:-1].split(' ')  # [:-1) splice removes \n
             if p_split[0] is not None and p_split[1] is not None:
                 try:
-                    points.append(tuple([int(p_split[0]), int(p_split[1])]))
+                    points.append(tuple([float(p_split[0]), float(p_split[1])]))
                 except ValueError:
-                    # Error when data is supplied that cannot be cast to a valid integer. Potentially type tolerant.
-                    raise ValueError('Error during processing test file data. Values supplied must be natural numbers.')
+                    # Error when data is supplied that cannot be cast to a float.
+                    raise ValueError('Error during processing test file data. Values supplied must be numeric.')
 
     return points
 
@@ -262,9 +262,9 @@ def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = Fals
             elif opt == '-b':
                 graph_bounds = int(arg)
     except getopt.GetoptError:
-        print('Error in processing command line arguments.')
+        print('Error in processing command line arguments...')
         print("Example use: python find_lines.py -t unit_tests/test_3_set_3 -p 3 -s 1 -g 1 -b 10")
-        sys.exit(1)
+        raise getopt.GetoptError('Error in processing CLI arguments.')
 
     if file_name is None:
         file_name = d_test
