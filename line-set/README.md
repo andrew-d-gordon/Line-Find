@@ -18,9 +18,9 @@ point sets from files (e.g. `x1 y1\nx2 y2\nx3 y3\n`). Also,
 src is a test script which utilizes the unittest library in order to run various manual inputs, as well as larger inputs 
 from files in unit_tests, through find_lines's two line finding functions.
 
-Now for how to use this library. When running find_lines.py it is best to specify several flags. These flags serve to 
+Now for how to use this library. When running find_lines.py, it is best to specify several flags. These flags serve to 
 supply a file name to pull input from, a threshold of how many points a 'valid' line must cross through, which line 
-finding function to use, as well as some optional result graphing flags.
+finding function to use, as well as some optional, result graphing flags.
 
 Here is an example of how to run the program from the command line using unit_tests/test_9_set_9 as input.
 
