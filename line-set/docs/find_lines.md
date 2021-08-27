@@ -50,17 +50,17 @@ can work with both integer or float coordinates (valid numerical data is cast to
     * The O(2^n) runtime is not ideal to say the least. While some time is saved in not making the second 'line added to
     the set' call when the current line does not satisfy as unique, things still get out of control quite quickly for 
     any significant input (e.g. test_1000_set_100 in unit_tests/, 1000 points in range x,y -100, 100). I am positive 
-    that applying a dynamic programming approach wherein reuse of computation helps avoid unnecessary traversals within
-    the recursive tree is necessary to improve. Some comfort could be provided in that we are looking for the largest 
-    set of lines that do not share any points, however I am unsure in how to implement reuse effectively. We are looking
-    for the largest subset of lines that do not any common points. A possible reuse method could be in setting a 
-    'largest set found' for any given index within all_lines and only revisiting a subtree if the current set being
-    built is larger than the max. One glaring reason this may not work is that the point in finding each possible 
-    subset is because skipping lines which take up lots of space on the graph may be crucial to finding the truly largest 
-    set of lines; if we stop at a certain index because the set we are currently building is not as large as the previous
-    largest, then we risk missing the construction of a set which can fit more lines in the subtree that gets blocked off.
-    I will continue to think of additional improvements/viable methods of backtracking, but for now, I hope these two 
-    unique line set finding are generally viable solutions.
+    that applying a dynamic programming approach, wherein reuse of computation avoids unnecessary/redundant recursive 
+    calls, is necessary to improve the runtime. A hint of where reuse could be viable comes from the fact that we are 
+    looking for the largest set of lines that do not share any points. However, I am unsure in how to implement reuse 
+    effectively here. A possible method could be in setting a 'largest set found' val, for any given index within 
+    all_lines, and only continuing recursion if the current set being built is larger than the max. One glaring reason 
+    this may not work is that the current largest set at any given index may have lines which, if they were not part of 
+    the set, could allow for more lines remaining in all_lines to be added. I.e. if we stop at a certain index because the 
+    set we are currently building is not as large as the previous largest, then we risk missing the construction of a 
+    set which can fit more lines than the current largest has in total. I will continue to think of additional methods 
+    for effectively reusing computation, but for now, all I can hope is that these two line set finding functions are 
+    generally viable for small, to medium size inputs.
     
 * Return: None, serves to return a filled out dictionary containing each valid subset of lines found from all_lines.
 
@@ -120,7 +120,8 @@ can work with both integer or float coordinates (valid numerical data is cast to
         line added to the set. This will find sets representing each permutation of non conflicting lines (each crossing 
         through entirely unique points in the pt set) as well as allow you to choose the largest set of non conflicting 
         lines. O(2^n) as 2^n subsets are technically possible but many recursive calls should be avoided by only making 
-        the recursive call with the new line added to the set when it has only unseen points to the set thus far.
+        the recursive call with the new line added to the set when it has only unseen points to the set thus far. The
+        above implementation was utilized for the `find_max_unique_point_lines` and `find_max_upt_helper()` functions.
         
 
 * Return: Satisfying set of lines as their linear equation strings `['ax + by + c',...]`, and tuples `[(a, b, c),...]`.
