@@ -15,7 +15,10 @@ Remove the fewest vertices in the graph, such that every remaining vertex is iso
 
 After creating the adjacency matrix in `O(n+m)`, we want to build sets of every disconnected set of vertices in the graph.
 This can be done with starting DFS at each untouched vertex until every possible disconnected set (island) is discovered.
-This version of DFS which finds each disconnected set should still run in `O(n+m)` because each edge and node is touched once.
+[Here](https://math.stackexchange.com/questions/277045/easiest-way-to-determine-all-disconnected-sets-from-a-graph) is 
+example of how this "island building" should work in practice. This version of DFS which finds each disconnected set 
+should run in `O(n+m)` because each edge and node is touched once.
+
 We want to track each "island" present in the graph and run the following algorithm on each:
 
 **Step 1** 
