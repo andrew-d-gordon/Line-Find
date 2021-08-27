@@ -54,10 +54,10 @@ Step 1 Total: `O(n)`
 **Step 2**
 
 For every vertex removed, we perform:
-* an `O(m)` operation where we remove the m edges that the vertex had (also decrementing edge count for adjacent vertices)
+* an `O(m)` operation where we remove the m edges that the vertex had (also decrementing edge count for adjacent vertices by 1)
 * an `O(n*logn)` heap sort where n is number of vertices remaining in the graph
 
-Because step 2 will be repeated until there are no more edges in the graph, this process at maximum should repeat a 
+Because Step 2 will be repeated until there are no more edges in the graph, this process at maximum should repeat a 
 maximum of n-1 times where n is number of vertices in an island.
 
 Step 2 Total: `O(n*nlogn) + O(n*m)`
