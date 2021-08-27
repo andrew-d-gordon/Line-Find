@@ -6,7 +6,7 @@ it's own functions and other modules within [src](https://github.com/andrew-d-go
 in order to achieve the discovery of lines. More information on available functions, objects, as well as the line 
 finding algorithms can be found in the 
 [docs](https://github.com/andrew-d-gordon/coding-challenges/tree/main/line-set/docs) folder. The specific line finding
-functions are detailed within the `finding_unique_lines()` and `finding_max_unique_lines()` sections inside of
+functions are detailed within the `finding_unique_lines()` and `finding_max_unique_point_lines()` sections inside of
 [find_lines.md](https://github.com/andrew-d-gordon/coding-challenges/tree/main/line-set/docs/find_lines.md).
 
 The [unit_tests](https://github.com/andrew-d-gordon/coding-challenges/tree/main/line-set/src/unit_tests) folder is home 
