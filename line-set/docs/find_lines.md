@@ -154,5 +154,6 @@ Returns points if is_file is False.
 `main`
 * Usage
     * Driver code to retrieve args from supply_arguments, request point list from input file, create PointSet for said 
-    points, runs them through find_unique_lines, prints results and if specified graph results.
+    points, runs them through find_unique_lines, prints results and, if specified, graphs results.
+    
 * Returns: N/A
