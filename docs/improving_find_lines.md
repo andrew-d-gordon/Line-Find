@@ -41,7 +41,7 @@ in common.
 
 If the above description was not clear, here is a (admittedly MS Paint berthed) run of the algorithm on test_9_set_9. 
 
-![alt_text](https://github.com/andrew-d-gordon/coding-challenges/blob/main/line-set/docs/improving_find_lines_algorithm_visualizer.png?raw=true)
+![alt_text](https://github.com/andrew-d-gordon/Line-Find/blob/main/docs/improving_find_lines_algorithm_visualizer.png?raw=true)
 
 # Rough runtime analysis
 
