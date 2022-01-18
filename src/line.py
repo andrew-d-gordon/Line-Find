@@ -21,7 +21,9 @@ def gcd_int_or_float(a, b):
 
     # This check ensures we do not recurse forever when a and b are float representations of whole values (e.g. 1.0)
     if floor(a) == a and floor(b) == b:
-        return gcd(int(a), int(b))  # Can utilize type intolerant math.gcd as we know a and b are whole values
+        return gcd(
+            int(a), int(b)
+        )  # Can utilize type intolerant math.gcd as we know a and b are whole values
 
     if a < b:
         return gcd_int_or_float(b, a)
@@ -58,38 +60,37 @@ def line_between_points(p1: tuple, p2: tuple):
     :return: line object representing f(n) line which spans p1->p2
     """
 
-    a = p2[1]-p1[1]
-    b = p1[0]-p2[0]
-    c = a*p1[0] + b*p1[1]
+    a = p2[1] - p1[1]
+    b = p1[0] - p2[0]
+    c = a * p1[0] + b * p1[1]
 
     signing = 1
     if b < 0:
         signing = -1
-    f_n = Line(a*signing, b*signing, c*signing)
+    f_n = Line(a * signing, b * signing, c * signing)
 
     return f_n
 
 
 def linear_eq_str(a, b, c):
     """
-       :param a: number representing a in ax + by = c
-       :param b: number representing b in ax + by = c
-       :param c: number representing c in ax + by = c
-       :return: string version of linear equation of form: 'ax + by = c'
-   """
+    :param a: number representing a in ax + by = c
+    :param b: number representing b in ax + by = c
+    :param c: number representing c in ax + by = c
+    :return: string version of linear equation of form: 'ax + by = c'
+    """
 
     # Set line desired line str format str, return str formatted with a, b, and c
-    line_format = '{0}x + {1}y = {2}'
+    line_format = "{0}x + {1}y = {2}"
     return line_format.format(a, b, c)
 
 
 class Line:
-
     def __init__(self, a, b, c):
         gcd_vars = gcd_abc(a, b, c)
-        self.a = a/gcd_vars
-        self.b = b/gcd_vars
-        self.c = c/gcd_vars
+        self.a = a / gcd_vars
+        self.b = b / gcd_vars
+        self.c = c / gcd_vars
         self.id = tuple([self.a, self.b, self.c])
 
         # Lines linear equation represented by ax1 + by1 = c where a = (y2-y1) and b = (x2-x1)

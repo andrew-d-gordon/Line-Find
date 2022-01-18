@@ -1,5 +1,4 @@
 class PointSet:
-
     def __init__(self, points):
         self.points = points
         self.points_d = {}

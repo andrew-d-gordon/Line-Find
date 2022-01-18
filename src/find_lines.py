@@ -16,10 +16,24 @@ def plot_points(line: tuple, line_dict: dict, graph: plt):
 
     points = line_dict[line]
     for p in points:
-        graph.plot([p[0]], [p[1]], marker='o', markersize=5, markerfacecolor='black', markeredgecolor='black')
+        graph.plot(
+            [p[0]],
+            [p[1]],
+            marker="o",
+            markersize=5,
+            markerfacecolor="black",
+            markeredgecolor="black",
+        )
 
 
-def plot_lines(lines: list, l_d: dict, x_bnd: int = 100, y_bnd: int = 100, g_name: str = '', p_plt: bool = False):
+def plot_lines(
+    lines: list,
+    l_d: dict,
+    x_bnd: int = 100,
+    y_bnd: int = 100,
+    g_name: str = "",
+    p_plt: bool = False,
+):
     """
     :param lines: set of lines to be plot (2d, each line specified by tuple (a, b, c) for ax + by = c)
     :param l_d: set of lines with corresponding points which they cross through
@@ -31,7 +45,7 @@ def plot_lines(lines: list, l_d: dict, x_bnd: int = 100, y_bnd: int = 100, g_nam
     """
 
     graph = plt
-    graph.axis([0-x_bnd, x_bnd, 0-y_bnd, y_bnd])
+    graph.axis([0 - x_bnd, x_bnd, 0 - y_bnd, y_bnd])
 
     # For each line in lines, determine f(x) for each x val within the bounds then plot the line
     for line in lines:
@@ -40,8 +54,10 @@ def plot_lines(lines: list, l_d: dict, x_bnd: int = 100, y_bnd: int = 100, g_nam
         elif line[1] == 0:  # Vertical lines
             graph.axvline(x=line[2], ymin=0, ymax=1)
         else:
-            x = np.linspace(0-x_bnd, x_bnd, x_bnd)
-            y = [(line[2] - line[0] * v) / line[1] for v in x]  # Solving for f(x) at specified x: y = (c-ax)/b
+            x = np.linspace(0 - x_bnd, x_bnd, x_bnd)
+            y = [
+                (line[2] - line[0] * v) / line[1] for v in x
+            ]  # Solving for f(x) at specified x: y = (c-ax)/b
             graph.plot(x, y)
 
         # If point plotting is desired, plot corresponding points for line
@@ -49,14 +65,21 @@ def plot_lines(lines: list, l_d: dict, x_bnd: int = 100, y_bnd: int = 100, g_nam
             plot_points(line, l_d, graph)
 
     # Finish setting graph properties and show graph (add x and y axes, grid lines)
-    graph.axhline(y=0, color='k')
-    graph.axvline(x=0, color='k')
-    graph.grid(True, which='both')
+    graph.axhline(y=0, color="k")
+    graph.axvline(x=0, color="k")
+    graph.grid(True, which="both")
     graph.title(g_name)
     graph.show()
 
 
-def unique_points(p1: tuple, p2: tuple, points_used: dict, f_n_id: tuple, line_d: dict, point_thresh: int):
+def unique_points(
+    p1: tuple,
+    p2: tuple,
+    points_used: dict,
+    f_n_id: tuple,
+    line_d: dict,
+    point_thresh: int,
+):
     """
     :param p1: the first point of pair in check
     :param p2: the second point of pair in check
@@ -76,7 +99,14 @@ def unique_points(p1: tuple, p2: tuple, points_used: dict, f_n_id: tuple, line_d
         return True
 
 
-def find_max_upt_helper(l_idx: int, l_amt: int, all_lines: list, line_set: list, uni_p_dict: dict, uni_line_sets: dict):
+def find_max_upt_helper(
+    l_idx: int,
+    l_amt: int,
+    all_lines: list,
+    line_set: list,
+    uni_p_dict: dict,
+    uni_line_sets: dict,
+):
     """
     Details on this algorithm can be found within docs/find_lines.md in the find_max_upt_helper section.
 
@@ -92,11 +122,15 @@ def find_max_upt_helper(l_idx: int, l_amt: int, all_lines: list, line_set: list,
     # If we have considered each line in uni_lines, add current line_set to uni_lines_all dict
     if l_idx >= l_amt:
         lines_in_set = len(line_set)
-        uni_line_sets[lines_in_set] = line_set  # Storing line_set in dict with key = size of line_set
+        uni_line_sets[
+            lines_in_set
+        ] = line_set  # Storing line_set in dict with key = size of line_set
         return
 
     # If there are still lines to consider, make a recursive call without considering the current line
-    find_max_upt_helper(l_idx+1, l_amt, all_lines, line_set[:], uni_p_dict.copy(), uni_line_sets)
+    find_max_upt_helper(
+        l_idx + 1, l_amt, all_lines, line_set[:], uni_p_dict.copy(), uni_line_sets
+    )
 
     # If the current line represented by uni_lines[l_idx] has no points which exist in uni_p_dict, mark it is as valid
     valid_line = True
@@ -114,7 +148,14 @@ def find_max_upt_helper(l_idx: int, l_amt: int, all_lines: list, line_set: list,
     if valid_line:
         for p in c_line_pts:
             uni_p_dict[p] = None
-        find_max_upt_helper(l_idx+1, l_amt, all_lines, line_set[:] + [c_line], uni_p_dict.copy(), uni_line_sets)
+        find_max_upt_helper(
+            l_idx + 1,
+            l_amt,
+            all_lines,
+            line_set[:] + [c_line],
+            uni_p_dict.copy(),
+            uni_line_sets,
+        )
 
 
 def find_max_unique_point_lines(p_set: PointSet, num_points: int, point_thresh: int):
@@ -137,7 +178,10 @@ def find_max_unique_point_lines(p_set: PointSet, num_points: int, point_thresh: 
 
     # Retrieve the maximum set found and return
     max_line_set = all_line_sets[max([k for k in all_line_sets.keys()])]
-    return max_line_set, full_line_dict  # Should update p_str_lines to only be lines from max_line_set
+    return (
+        max_line_set,
+        full_line_dict,
+    )  # Should update p_str_lines to only be lines from max_line_set
 
 
 def find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int):
@@ -158,7 +202,7 @@ def find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int):
         p1 = p_set.points[i]
 
         # Look at lines between points at idx i (p1) and at idx j=i+1->num_points (p2)
-        for j in range(i+1, num_points):
+        for j in range(i + 1, num_points):
             p2 = p_set.points[j]
             f_n = line_between_points(p1, p2)
 
@@ -187,7 +231,7 @@ def find_unique_lines(p_set: PointSet, num_points: int, point_thresh: int):
     return lines_output, line_dict
 
 
-def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
+def retrieve_point_list(is_file: bool, input_name: str = "", points: list = []):
     """
     :param input_name: name of input file (if using unit test)
     :param is_file: boolean for if input should be from input_name file or from points param
@@ -201,7 +245,7 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
 
     # Validate ability to open and read file
     try:
-        f = open(input_name, 'r')
+        f = open(input_name, "r")
     except OSError:
         print("Error: unable to open/read from input file:", input_name)
         sys.exit(1)
@@ -209,22 +253,30 @@ def retrieve_point_list(is_file: bool, input_name: str = '', points: list = []):
     with f:
         content = f.readlines()
         for p_raw in content:
-            p_split = p_raw[:-1].split(' ')  # [:-1) splice removes \n
+            p_split = p_raw[:-1].split(" ")  # [:-1) splice removes \n
             if p_split[0] is not None and p_split[1] is not None:
                 try:
                     points.append(tuple([float(p_split[0]), float(p_split[1])]))
                 except ValueError:
                     # Error when data is supplied that cannot be cast to a float.
-                    raise ValueError('Error during processing test file data. Values supplied must be numeric.')
+                    raise ValueError(
+                        "Error during processing test file data. Values supplied must be numeric."
+                    )
 
     return points
 
 
 # Default test file for supply_arguments test file default, not utilized if '-t input_name' supplied in CL run
-d_f = 'unit_tests/test_3_set_3'
+d_f = "unit_tests/test_3_set_3"
 
 
-def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = False, d_plt: bool = False, d_b: int = 20):
+def supply_arguments(
+    d_test: str = d_f,
+    d_pt_thr: int = 3,
+    d_strict: bool = False,
+    d_plt: bool = False,
+    d_b: int = 20,
+):
     """
     supply_arguments is able to provide a file name, point threshold, and graphing flags for main.
     It does so by attempting to parse the CLI arguments by these flags:
@@ -236,7 +288,6 @@ def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = Fals
 
     Example CLI run of this program:
     'python find_lines.py -t unit_tests/test_3_set_3 -p 3 -s 1 -g 1 -b 100'
-
 
     :param d_test: default test file to utilize if none supplied
     :param d_pt_thr: default point threshold if none supplied
@@ -253,20 +304,22 @@ def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = Fals
     try:
         opts, args = getopt.getopt(argv, flags)
         for opt, arg in opts:
-            if opt == '-t':
+            if opt == "-t":
                 file_name = str(arg)
-            elif opt == '-p':
+            elif opt == "-p":
                 pt_thresh = int(arg)
-            elif opt == '-s':
+            elif opt == "-s":
                 is_strict_fn = bool(int(arg))
-            elif opt == '-g':
+            elif opt == "-g":
                 plt_graph = bool(int(arg))
-            elif opt == '-b':
+            elif opt == "-b":
                 graph_bounds = int(arg)
     except getopt.GetoptError:
-        print('Error in processing command line arguments...')
-        print("Example use: python find_lines.py -t unit_tests/test_3_set_3 -p 3 -s 1 -g 1 -b 10")
-        raise getopt.GetoptError('Error in processing CLI arguments.')
+        print("Error in processing command line arguments...")
+        print(
+            "Example use: python find_lines.py -t unit_tests/test_3_set_3 -p 3 -s 1 -g 1 -b 10"
+        )
+        raise getopt.GetoptError("Error in processing CLI arguments.")
 
     if file_name is None:
         file_name = d_test
@@ -282,10 +335,18 @@ def supply_arguments(d_test: str = d_f, d_pt_thr: int = 3, d_strict: bool = Fals
     return file_name, pt_thresh, is_strict_fn, plt_graph, graph_bounds
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Retrieve test file name and other vars from CLI/defaults, set is_strict_unique boolean
-    test_file, point_threshold, is_strict_unique, plot_graph, bounds = supply_arguments()
-    set_points = []  # Supply own set of points here if desired. Form: [(x1, y1), ..., (xn, yn)]
+    (
+        test_file,
+        point_threshold,
+        is_strict_unique,
+        plot_graph,
+        bounds,
+    ) = supply_arguments()
+    set_points = (
+        []
+    )  # Supply own set of points here if desired. Form: [(x1, y1), ..., (xn, yn)]
 
     # Unit test files be textual to be parsed (.read() specs)
     pts = retrieve_point_list(True, test_file, set_points)
@@ -297,18 +358,33 @@ if __name__ == '__main__':
     # If largest set of lines with entirely unique points desired, call find_max_unique_point_lines()
     pt_lines = pt_str_lines = []
     all_line_dict = {}
-    if is_strict_unique:  # If max set of lines with no points from point set in common is desired
-        pt_lines, all_line_dict = find_max_unique_point_lines(ps, ps.size, point_threshold)
+    if (
+        is_strict_unique
+    ):  # If max set of lines with no points from point set in common is desired
+        pt_lines, all_line_dict = find_max_unique_point_lines(
+            ps, ps.size, point_threshold
+        )
     else:  # If set of unique lines from point set desired
         pt_lines, all_line_dict = find_unique_lines(ps, ps.size, point_threshold)
 
     print("-------------------\nFinished processing.")
-    print("Below are lines which crossed {0} or more points from the test data.".format(point_threshold))
+    print(
+        "Below are lines which crossed {0} or more points from the test data.".format(
+            point_threshold
+        )
+    )
     print("Linear equation form: " + str(convert_lines_to_str(pt_lines)))
     print("Reduced linear equation form: " + str(pt_lines))
 
     # Graph lines (or points, p_plt=True) in bounded space
     if plot_graph and len(pt_lines) > 0:
-        plot_lines(pt_lines, all_line_dict, bounds, bounds, test_file.split('/')[-1], p_plt=True)
+        plot_lines(
+            pt_lines,
+            all_line_dict,
+            bounds,
+            bounds,
+            test_file.split("/")[-1],
+            p_plt=True,
+        )
 
     sys.exit(0)

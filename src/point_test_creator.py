@@ -30,11 +30,11 @@ def write_points_to_file(file_name: str, d: dict):
     :param d: random point dict
     :return: None, serves to write points in d to file
     """
-    save_dir = 'unit_tests/'
+    save_dir = "unit_tests/"
 
-    file = open(save_dir+file_name, 'w+')
+    file = open(save_dir + file_name, "w+")
     for k in d.keys():
-        file.write(str(k[0])+' '+str(k[1])+'\n')
+        file.write(str(k[0]) + " " + str(k[1]) + "\n")
 
     d.clear()
     file.close()
@@ -45,15 +45,21 @@ def driver():
     :return: None, serves to acquire necessary inputs and unit test parameters
     """
 
-    print('All unit tests will be saved under the unit_test folder.')
-    file_name = input('Enter a name for unit_test to be saved in: ')
-    print('Enter X and Y bounds for points to be held within.')
-    x_bound = int(input('X bound: '))
-    y_bound = int(input('Y bound: '))
-    num_points = int(input('Lastly, enter the number of points to be in the unit test: '))
+    print("All unit tests will be saved under the unit_test folder.")
+    file_name = input("Enter a name for unit_test to be saved in: ")
+    print("Enter X and Y bounds for points to be held within.")
+    x_bound = int(input("X bound: "))
+    y_bound = int(input("Y bound: "))
+    num_points = int(
+        input("Lastly, enter the number of points to be in the unit test: ")
+    )
 
-    max_points = (2*x_bound)*(2*y_bound)+2  # +2 for 0 as possible val in range [-bound,+bound]
-    if num_points > max_points:  # If requested num_points > possible points in desired range
+    max_points = (2 * x_bound) * (
+        2 * y_bound
+    ) + 2  # +2 for 0 as possible val in range [-bound,+bound]
+    if (
+        num_points > max_points
+    ):  # If requested num_points > possible points in desired range
         num_points = max_points
 
     d = {}
